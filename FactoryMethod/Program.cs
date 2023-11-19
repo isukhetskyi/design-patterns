@@ -2,9 +2,9 @@
 
 public class Program
 {
-    private readonly ILogger _logger;
+    private static readonly ILogger _logger;
 
-    public Program()
+    static Program()
     {
         var env = GetEnvironment();
         _logger = env switch
@@ -15,14 +15,14 @@ public class Program
             _ => throw new NotImplementedException(),
         };
     }
-    private void Main(string[] args)
+    private static void Main(string[] args)
     {
         var todaysLuckyNumber = new Random(DateTime.UtcNow.Microsecond).Next();
 
         _logger.Log($"Today lucky number is {todaysLuckyNumber}");
     }
 
-    private Environment GetEnvironment()
+    private static Environment GetEnvironment()
     {
         var number = new Random(DateTime.UtcNow.Microsecond).Next(0, 100);
 
